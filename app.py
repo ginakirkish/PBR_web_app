@@ -36,7 +36,7 @@ def get_data(globStr):
     output_urls = ["/"+s for s in image_folders] #static is in root
     output_data = [{"url": url, "type": None, "part": None,
                     "pbr_name": image_folders[i].split("/")[-2]} for i, url in enumerate(output_urls)]
-    return jsonify(output_data)
+    return "you a dummy"
 
 import json
 @app.route("/saveData/", methods=['POST'])
@@ -49,9 +49,10 @@ def save_data():
 @app.route("/saveText/", methods=['POST'])
 def save_text():
     textfile = request.files['mses']
-    test = False
+    test = 'False'
     if textfile.filename != "":
-        test = True
+        test = 'True'
+    print (test)
     #if textfile == '':
     #    return redirect(request.url)
     #else:
