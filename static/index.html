@@ -1,151 +1,87 @@
-<html>
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>AnatomicalPlotter</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
-    <script src="https://unpkg.com/vue"></script>
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k90mg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTw1AQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.boostrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-
 <body>
-<div id="content">
- <nav class="navbar sticky-top navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">PBRain Labeller</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>    </ul>
-
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" v-bind:placeholder="searchStr" v-model="searchStr">
-      <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="runSearch">Search</button>
-    </form>
-
-  </div>
- </nav>
-
-<div class="" style="margin:20px;">
-
-  <div class="form-check form-check-inline">
-  <div class="jumbotron" style="margin-top:10px;">
-  <h1 class="display-3">{{title}}</h1> <!-- NOTE USE OF {{ }} HERE-->
-  <p class="lead">{{caption}}</p>
-  <hr class="my-4">
-  <p>Choose between T1 and T2 image modality, and brain or spinal cord</p>
-  <p class="lead">
-    <button class="btn btn-primary btn-lg" v-on:click="sendData">Save</button>
-  </p>
-
-  </p>
-</div>
-
-<div id="images" class="row">
-
-<div class="col-xs" v-for="img in images">  <!-- NOTE USE OF v-for HERE-->
-    <div class="card mb-3">
-      <img class="card-img-top" v-bind:src="img.url"  alt="Card image cap"> <!-- NOTE USE OF v-bind HERE-->
-      <div class="card-block">
-        <h4 class="card-title">{{img.pbr_name}}</h4> <!-- NOTE USE OF {{  }} HERE-->
-        <p class="card-text">
-        <p class="card-text">
-	<div class="form-check form-check-inline">
-	   <label class="form-check-label">
-	   <input class="form-check-input" type="radio" value="brain" v-model="img.part"> Brain
-	   </label>
-	</div>
-	<div class="form-check form-check-inline">
-	   <label class="form-check-label">
-	   <input class="form-check-input" type="radio" value="spine" v-model="img.part"> Spine
-	   </label>
-	</div>
-	<div class="form-group">
-	   <label>Choose Modality</label>
-	   <select class="form-control" v-model="img.type">
-	      <option>Ignore</option>
-	      <option>T1</option>
-	      <option>T2</option>
-	      <option>FLAIR</option>
-	      <option>Diffusion</option>
-	   </select>
-	</div>
-	</p>
-        </p>
-      </div>
+  <div id="content">
+    <div class="container">
+      <table class="table">
+        <tr>
+          <td>
+            <p>Manually input mses or select a text file to load:</p>
+            <p><input type="file" id="fileToLoad" v-on:change='loadFileAsText()'></p>
+          </td>
+          <td>
+            <textarea id="msesToAnalyze" cols="30" rows="8"></textarea>
+          </td>
+          <td>
+            <input type="submit" value="Obtain information" v-on:click="printArray()">
+          </td>
+        </tr>
+      </table>
     </div>
 
-</div>
+    <div id="lists"></div>
 
-
-</div>
+    <div class="container">
+      <h2>Table</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>mse</th>
+            <th>dicom</th>
+            <th>nifti</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="mse in mselist">
+            <td>{{mse.mse}}</td>
+            <td>{{mse.dcm}}</td>
+            <td>{{mse.nii}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-
-
 </body>
 
 <script>
-
 var app = new Vue({
-  el: "#content",
+  el: '#content',
   data: {
-    images: [
-      {url: "/static/images/ms1110-mse4561-007-MPRAGE/anatomical_image.png", 
-       pbr_name: "ms1110-mse4561-007-MPRAGE",
-       type:"T1", 
-       part:"brain"}  
-    ],
-    title: "PBrain Images",
-    searchStr: "ms*"
-  },
- methods: {
-    runSearch: function(e){
-       e.preventDefault() //stops the default action of a button (which is to submit)
-       console.log("searching for", this.searchStr)
-       var self=this // the value of "this" depends on the function that calls it. Save the variable as "self" 
-       $.get("/getData/"+self.searchStr, function(data, err){Rosie1313
-
-           self.images = data
-    
-       }); //ends get
-    }, 
-    sendData: function(e){
-       e.preventDefault()
-       console.log("sending", this.images)
-       $.post("/saveData/", 
-            JSON.stringify(this.images),
-            function(response){
-               alert(response)
-            })
-   }//ends function
- }//ends method
-
-})
-
-
-
-$.get("/getData/ms*", function(data, err){ 
-    console.log(data) //check the console to see what this data structure looks like
-    app.images = data  
+    mselist: [
+      {mse: "test",
+       dcm: "fire",
+       nii: "test"},
+      {mse: "test2",
+       dcm: "test2",
+       nii: "test2"}
+    ]
+  },  
+  methods: {
+    loadFileAsText: function(e){
+      var fileToLoad = document.getElementById("fileToLoad").files[0];
+      var fileReader = new FileReader();
+        fileReader.onload = function(fileLoadedEvent) 
+        {
+          var textFromFileLoaded = fileLoadedEvent.target.result;
+          document.getElementById("msesToAnalyze").value = textFromFileLoaded;
+        };
+      fileReader.readAsText(fileToLoad, "UTF-8");
+    },
+    printArray: function(e){
+      var textToSave = document.getElementById("msesToAnalyze").value;
+      document.getElementById("lists").innerHTML = textToSave.split("\n");
+    } 
+  } 
 })
 
 </script>
-
-
 
 </html>
